@@ -41,7 +41,8 @@ for board robot</p>
   <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
   
-  <export>
-    <build_type>ament_cmake</build_type>
-  </export>
+<export>
+  <build_type>ament_cmake</build_type>
+  <gazebo_ros gazebo_model_path="${prefix}/.." />
+</export>
 </package>
