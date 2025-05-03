@@ -135,14 +135,6 @@
 
 
 
-  <!-- Torsional Spring Plugin for trj0 -->
-  <gazebo>
-    <plugin name="trj0_torsional_spring" filename="libgazebo_joint_torsional_spring.so">
-      <kx>3.0</kx>
-      <set_point>0</set_point>
-      <joint>trj0</joint>
-    </plugin>
-  </gazebo>
 
 
 
@@ -326,17 +318,6 @@
       velocity="0.1" />
   </joint>
 
-
-
-
-  <!-- Torsional Spring Plugin for trj1 -->
-  <gazebo>
-    <plugin name="trj1_torsional_spring" filename="libgazebo_joint_torsional_spring.so">
-      <kx>3.0</kx>
-      <set_point>0</set_point>
-      <joint>trj1</joint>
-    </plugin>
-  </gazebo>
 
 
 
