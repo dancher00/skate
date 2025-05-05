@@ -27,7 +27,7 @@ trj0_controller:
       - velocity
     gains:
       trj0:
-        p: 50.0
+        p: 150.0
         i: 0.0
         d: 1.0
 
@@ -43,7 +43,7 @@ trj1_controller:
       - velocity
     gains:
       trj1:
-        p: 50.0
+        p: 150.0
         i: 0.0
         d: 1.0
 
@@ -61,18 +61,18 @@ wheel_controller:
       - velocity
     gains:
       whj0:
-        p: 1.0
+        p: 11.0
         i: 0.1
         d: 0.0
       whj1:
-        p: 1.0
+        p: 11.0
         i: 0.1
         d: 0.0
       whj2:
-        p: 1.0
+        p: 11.0
         i: 0.1
         d: 0.0
       whj3:
-        p: 1.0
+        p: 11.0
         i: 0.1
         d: 0.0

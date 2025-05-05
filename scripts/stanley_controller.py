@@ -17,12 +17,12 @@ class StanleyController(Node):
         super().__init__('stanley_controller')
         
         # Parameters
-        self.declare_parameter('k_gain', 0.5)  # Stanley gain for cross-track error
+        self.declare_parameter('k_gain', 10.5)  # Stanley gain for cross-track error
         self.declare_parameter('k_soft', 1.0)  # Softening factor for low speeds
         self.declare_parameter('max_steering', 0.227799)  # Max steering angle (from URDF limits)
         self.declare_parameter('wheelbase', 0.5)  # Wheelbase (distance between front and rear axles)
         self.declare_parameter('control_frequency', 10.0)  # Control loop frequency in Hz
-        self.declare_parameter('base_wheel_speed', 2.0)  # Base wheel speed in rad/s
+        self.declare_parameter('base_wheel_speed', 20.0)  # Base wheel speed in rad/s
         
         # Get parameters
         self.k_gain = self.get_parameter('k_gain').value
