@@ -132,7 +132,7 @@
       effort="10"
       velocity="0.1" />
       
-<dynamics damping="0.5" friction="0.0"/>
+<!-- <dynamics damping="1.0" friction="0.1"/> -->
 
   </joint>
 
@@ -320,7 +320,7 @@
       effort="10"
       velocity="0.1" />
 
-<dynamics damping="0.5" friction="0.0"/>
+<!-- <dynamics damping="1.0" friction="0.1"/> -->
 
   </joint>
 
@@ -442,15 +442,15 @@
 
 
 
-<gazebo reference="trj0">
-  <springStiffness>0.5</springStiffness>
+<!-- <gazebo reference="trj0">
+  <springStiffness>1.0</springStiffness>
   <springReference>0.0</springReference>
 </gazebo>
 
 <gazebo reference="trj1">
-  <springStiffness>0.5</springStiffness>
+  <springStiffness>1.0</springStiffness>
   <springReference>0.0</springReference>
-</gazebo>
+</gazebo> -->
 
 
 </robot>
