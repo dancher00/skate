@@ -7,10 +7,10 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
 
     trj0_controller:
-      type: effort_controllers/JointPositionController
+      type: position_controllers/JointPositionController
 
     trj1_controller:
-      type: effort_controllers/JointPositionController
+      type: position_controllers/JointPositionController
 
     wheel_controller:
       type: velocity_controllers/JointGroupVelocityController
@@ -59,3 +59,20 @@ wheel_controller:
       - velocity
     state_interfaces:
       - velocity
+    gains:
+      whj0:
+        p: 1.0
+        i: 0.1
+        d: 0.0
+      whj1:
+        p: 1.0
+        i: 0.1
+        d: 0.0
+      whj2:
+        p: 1.0
+        i: 0.1
+        d: 0.0
+      whj3:
+        p: 1.0
+        i: 0.1
+        d: 0.0

@@ -7,7 +7,7 @@ import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry, Path
 from geometry_msgs.msg import Twist
-from std_msgs.msg import Float64
+from std_msgs.msg import Float64, Float64MultiArray
 from tf2_ros import TransformException
 from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
@@ -22,12 +22,14 @@ class StanleyController(Node):
         self.declare_parameter('max_steering', 0.227799)  # Max steering angle (from URDF limits)
         self.declare_parameter('wheelbase', 0.5)  # Wheelbase (distance between front and rear axles)
         self.declare_parameter('control_frequency', 10.0)  # Control loop frequency in Hz
+        self.declare_parameter('base_wheel_speed', 2.0)  # Base wheel speed in rad/s
         
         # Get parameters
         self.k_gain = self.get_parameter('k_gain').value
         self.k_soft = self.get_parameter('k_soft').value
         self.max_steering = self.get_parameter('max_steering').value
         self.wheelbase = self.get_parameter('wheelbase').value
+        self.base_wheel_speed = self.get_parameter('base_wheel_speed').value
         
         # Path tracking variables
         self.path = None
@@ -47,17 +49,45 @@ class StanleyController(Node):
             10)
         
         # Create publishers for ROS2 controllers
+        # For steering joints
         self.front_steering_pub = self.create_publisher(
             Float64,
-            '/trj0_controller/commands',
+            '/trj0_controller/command',
             10)
         
         self.rear_steering_pub = self.create_publisher(
             Float64,
-            '/trj1_controller/commands',
+            '/trj1_controller/command',
             10)
         
-        # Velocity publisher (if you want to control the velocity)
+        # For wheel velocity control - using a Float64MultiArray for all wheels
+        self.wheel_velocity_pub = self.create_publisher(
+            Float64MultiArray,
+            '/wheel_controller/commands',
+            10)
+        
+        # Individual wheel publishers (alternative approach)
+        self.wheel0_pub = self.create_publisher(
+            Float64,
+            '/wheel_controller/commands/whj0',
+            10)
+        
+        self.wheel1_pub = self.create_publisher(
+            Float64,
+            '/wheel_controller/commands/whj1',
+            10)
+        
+        self.wheel2_pub = self.create_publisher(
+            Float64,
+            '/wheel_controller/commands/whj2',
+            10)
+        
+        self.wheel3_pub = self.create_publisher(
+            Float64,
+            '/wheel_controller/commands/whj3',
+            10)
+        
+        # Velocity publisher for cmd_vel if needed
         self.velocity_pub = self.create_publisher(
             Twist,
             '/cmd_vel',
@@ -187,6 +217,28 @@ class StanleyController(Node):
         
         return steering_angle
     
+    def control_wheel_velocities(self, forward_speed):
+        """Set all wheels to rotate at the same velocity"""
+        # Create a Float64MultiArray message for all wheels
+        wheel_velocities = Float64MultiArray()
+        
+        # All wheels rotate at the same speed
+        wheel_velocities.data = [self.base_wheel_speed] * 4
+        
+        # Publish to the wheel controller
+        self.wheel_velocity_pub.publish(wheel_velocities)
+        
+        # Alternative: publish to individual wheel controllers
+        wheel_speed_msg = Float64()
+        wheel_speed_msg.data = self.base_wheel_speed
+        
+        self.wheel0_pub.publish(wheel_speed_msg)
+        self.wheel1_pub.publish(wheel_speed_msg)
+        self.wheel2_pub.publish(wheel_speed_msg)
+        self.wheel3_pub.publish(wheel_speed_msg)
+        
+        self.get_logger().debug(f'Set all wheels to velocity: {self.base_wheel_speed}')
+    
     def control_loop(self):
         """Main control loop that runs at the specified frequency"""
         if not self.path or not self.current_pose:
@@ -210,8 +262,10 @@ class StanleyController(Node):
         rear_steering_msg.data = -steering_angle  # Opposite direction
         self.rear_steering_pub.publish(rear_steering_msg)
         
-        # Example velocity control - adjust as needed
-        # Here we slow down in curves and speed up on straightaways
+        # Control wheel velocities to be synchronized
+        self.control_wheel_velocities(self.base_wheel_speed)
+        
+        # Also publish cmd_vel for overall robot motion if needed
         target_velocity = 0.5  # Base velocity
         velocity_factor = 1.0 - (abs(steering_angle) / self.max_steering) * 0.5
         
@@ -224,7 +278,7 @@ class StanleyController(Node):
             f'Cross-track error: {cross_track_error:.3f}, '
             f'Heading error: {heading_error:.3f}, '
             f'Steering angle: {steering_angle:.3f}, '
-            f'Velocity: {vel_msg.linear.x:.3f}'
+            f'Wheel velocity: {self.base_wheel_speed:.3f}'
         )
         
         # Check if we've reached the end of the path
