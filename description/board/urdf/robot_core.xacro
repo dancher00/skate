@@ -432,7 +432,7 @@
 
 
 
-<!-- <gazebo reference="trj0">
+<gazebo reference="trj0">
   <springStiffness>1.0</springStiffness>
   <springReference>0.0</springReference>
 </gazebo>
@@ -440,7 +440,7 @@
 <gazebo reference="trj1">
   <springStiffness>1.0</springStiffness>
   <springReference>0.0</springReference>
-</gazebo> -->
+</gazebo>
 
 
 </robot>

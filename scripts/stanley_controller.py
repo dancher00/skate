@@ -49,15 +49,17 @@ class StanleyController(Node):
             10)
         
         # Create publishers for ROS2 controllers
-        # For steering joints
+
+
+        # New format for JointGroupPositionController
         self.front_steering_pub = self.create_publisher(
-            Float64,
-            '/trj0_controller/command',
+            Float64MultiArray,
+            '/trj0_controller/commands',
             10)
         
         self.rear_steering_pub = self.create_publisher(
-            Float64,
-            '/trj1_controller/command',
+            Float64MultiArray,
+            '/trj1_controller/commands',
             10)
         
         # For wheel velocity control - using a Float64MultiArray for all wheels
@@ -252,13 +254,13 @@ class StanleyController(Node):
         steering_angle = self.stanley_control(cross_track_error, heading_error)
         
         # Publish steering commands
-        front_steering_msg = Float64()
-        front_steering_msg.data = steering_angle
+        front_steering_msg = Float64MultiArray()
+        front_steering_msg.data = [steering_angle]
         self.front_steering_pub.publish(front_steering_msg)
         
         # for a tighter turning radius
-        rear_steering_msg = Float64()
-        rear_steering_msg.data = steering_angle  #
+        rear_steering_msg = Float64MultiArray()
+        rear_steering_msg.data = [-steering_angle]  #
         self.rear_steering_pub.publish(rear_steering_msg)
         
         # Control wheel velocities to be synchronized
