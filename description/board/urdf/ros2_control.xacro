@@ -8,7 +8,7 @@
       </hardware>
       
       <!-- Truck joints (steering) -->
-      <joint name="trj0">
+      <!-- <joint name="trj0">
         <command_interface name="position">
           <param name="min">-0.227799</param>
           <param name="max">0.227799</param>
@@ -27,7 +27,7 @@
         <state_interface name="velocity"/>
         <state_interface name="effort"/>
       </joint>
-      
+       -->
       <!-- Wheel joints -->
       <joint name="whj0">
         <command_interface name="velocity"/>

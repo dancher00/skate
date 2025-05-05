@@ -126,13 +126,8 @@
       link="tr0" />
     <axis
       xyz="0 0 -1" />
-    <limit
-      lower="-0.227799"
-      upper="0.227799"
-      effort="10"
-      velocity="0.1" />
-      
-<!-- <dynamics damping="1.0" friction="0.1"/> -->
+    <limit lower="-0.227799" upper="0.227799" effort="50" velocity="1.0" />
+    <dynamics damping="0.5" friction="0.05"/>
 
   </joint>
 
@@ -314,13 +309,8 @@
       link="tr1" />
     <axis
       xyz="0 0 -1" />
-    <limit
-      lower="-0.227799"
-      upper="0.227799"
-      effort="10"
-      velocity="0.1" />
-
-<!-- <dynamics damping="1.0" friction="0.1"/> -->
+    <limit lower="-0.227799" upper="0.227799" effort="50" velocity="1.0" />
+    <dynamics damping="0.5" friction="0.05"/>
 
   </joint>
 

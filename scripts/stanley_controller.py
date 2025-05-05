@@ -256,10 +256,9 @@ class StanleyController(Node):
         front_steering_msg.data = steering_angle
         self.front_steering_pub.publish(front_steering_msg)
         
-        # For a skateboard, we might want to steer the rear wheels in the opposite direction
         # for a tighter turning radius
         rear_steering_msg = Float64()
-        rear_steering_msg.data = -steering_angle  # Opposite direction
+        rear_steering_msg.data = steering_angle  #
         self.rear_steering_pub.publish(rear_steering_msg)
         
         # Control wheel velocities to be synchronized
