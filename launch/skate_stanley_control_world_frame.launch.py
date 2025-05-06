@@ -118,10 +118,7 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'use_sim_time': use_sim_time,
-            'path_type': path_type,
-            'path_scale': 3.0,
-            'num_points': 100,
-            'publish_frequency': 1.0
+            'path_type': path_type
         }]
     )
     
@@ -131,12 +128,7 @@ def generate_launch_description():
         name='stanley_controller',
         output='screen',
         parameters=[{
-            'use_sim_time': use_sim_time,
-            'k_gain': 0.5,
-            'k_soft': 1.0,
-            'max_steering': 0.227799,
-            'wheelbase': 0.5,
-            'control_frequency': 10.0
+            'use_sim_time': use_sim_time
         }]
     )
     

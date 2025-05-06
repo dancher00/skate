@@ -16,13 +16,13 @@ class StanleyController(Node):
     def __init__(self):
         super().__init__('stanley_controller')
         
-        # Parameters
-        self.declare_parameter('k_gain', 10.5)  # Stanley gain for cross-track error
-        self.declare_parameter('k_soft', 1.0)  # Softening factor for low speeds
+        # Parameters - MODIFIED VALUES
+        self.declare_parameter('k_gain', 10.5)  # Reduced from 10.5 for less aggressive control
+        self.declare_parameter('k_soft', 2.0)  # Increased from 1.0 for more smoothing
         self.declare_parameter('max_steering', 0.227799)  # Max steering angle (from URDF limits)
         self.declare_parameter('wheelbase', 0.5)  # Wheelbase (distance between front and rear axles)
-        self.declare_parameter('control_frequency', 10.0)  # Control loop frequency in Hz
-        self.declare_parameter('base_wheel_speed', 20.0)  # Base wheel speed in rad/s
+        self.declare_parameter('control_frequency', 60.0)  # Increased from 10.0 for smoother control
+        self.declare_parameter('base_wheel_speed', 30.0)  # Reduced from 20.0 for less aggressive motion
         
         # Get parameters
         self.k_gain = self.get_parameter('k_gain').value
@@ -34,6 +34,10 @@ class StanleyController(Node):
         # Path tracking variables
         self.path = None
         self.current_waypoint_idx = 0
+        
+        # Previous steering angles for smoothing and rate limiting
+        self.prev_steering_angle = None
+        self.prev_smoothed_angle = None
         
         # Create subscribers
         self.odom_sub = self.create_subscription(
@@ -49,8 +53,6 @@ class StanleyController(Node):
             10)
         
         # Create publishers for ROS2 controllers
-
-
         # New format for JointGroupPositionController
         self.front_steering_pub = self.create_publisher(
             Float64MultiArray,
@@ -205,6 +207,7 @@ class StanleyController(Node):
             angle += 2.0 * math.pi
         return angle
     
+    # MODIFIED: Added rate limiting to the steering angle calculation
     def stanley_control(self, cross_track_error, heading_error):
         """Implement the Stanley controller to calculate steering angle"""
         # Avoid division by zero at very low speeds
@@ -217,7 +220,29 @@ class StanleyController(Node):
         # Limit steering angle to max_steering
         steering_angle = max(-self.max_steering, min(self.max_steering, steering_angle))
         
+        # Add steering rate limiting (NEW CODE)
+        if hasattr(self, 'prev_steering_angle') and self.prev_steering_angle is not None:
+            max_steering_change = 0.05  # Max change in radians per control cycle
+            steering_delta = steering_angle - self.prev_steering_angle
+            if abs(steering_delta) > max_steering_change:
+                steering_angle = self.prev_steering_angle + math.copysign(max_steering_change, steering_delta)
+        
+        # Save for next iteration
+        self.prev_steering_angle = steering_angle
+        
         return steering_angle
+    
+    # NEW METHOD: Add exponential smoothing for steering angle
+    def smooth_angle(self, angle, prev_angle, alpha=0.6):
+        """Apply exponential smoothing to angle"""
+        # If no previous angle, just return current angle
+        if prev_angle is None:
+            return angle
+        
+        # Apply exponential smoothing
+        # alpha=0 would be no change, alpha=1 would be no smoothing
+        smoothed_angle = alpha * angle + (1.0 - alpha) * prev_angle
+        return smoothed_angle
     
     def control_wheel_velocities(self, forward_speed):
         """Set all wheels to rotate at the same velocity"""
@@ -241,6 +266,7 @@ class StanleyController(Node):
         
         self.get_logger().debug(f'Set all wheels to velocity: {self.base_wheel_speed}')
     
+    # MODIFIED: Updated control loop to include smoothing
     def control_loop(self):
         """Main control loop that runs at the specified frequency"""
         if not self.path or not self.current_pose:
@@ -251,16 +277,23 @@ class StanleyController(Node):
         cross_track_error, heading_error, path_heading = self.get_cross_track_error()
         
         # Get steering command from Stanley controller
-        steering_angle = self.stanley_control(cross_track_error, heading_error)
+        raw_steering_angle = self.stanley_control(cross_track_error, heading_error)
+        
+        # Apply additional smoothing (NEW CODE)
+        if not hasattr(self, 'prev_smoothed_angle') or self.prev_smoothed_angle is None:
+            self.prev_smoothed_angle = raw_steering_angle
+        
+        steering_angle = self.smooth_angle(raw_steering_angle, self.prev_smoothed_angle)
+        self.prev_smoothed_angle = steering_angle
         
         # Publish steering commands
         front_steering_msg = Float64MultiArray()
         front_steering_msg.data = [steering_angle]
         self.front_steering_pub.publish(front_steering_msg)
         
-        # for a tighter turning radius
+        # For a tighter turning radius
         rear_steering_msg = Float64MultiArray()
-        rear_steering_msg.data = [-steering_angle]  #
+        rear_steering_msg.data = [-steering_angle]  # Opposite angle for rear steering
         self.rear_steering_pub.publish(rear_steering_msg)
         
         # Control wheel velocities to be synchronized
@@ -278,7 +311,8 @@ class StanleyController(Node):
         self.get_logger().debug(
             f'Cross-track error: {cross_track_error:.3f}, '
             f'Heading error: {heading_error:.3f}, '
-            f'Steering angle: {steering_angle:.3f}, '
+            f'Raw steering: {raw_steering_angle:.3f}, '
+            f'Smoothed steering: {steering_angle:.3f}, '
             f'Wheel velocity: {self.base_wheel_speed:.3f}'
         )
         

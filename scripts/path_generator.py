@@ -12,10 +12,10 @@ class PathGenerator(Node):
         super().__init__('path_generator')
         
         # Parameters
-        self.declare_parameter('path_type', 'figure_eight')  # Options: figure_eight, circle, straight
-        self.declare_parameter('path_scale', 3.0)  # Scale of the path
-        self.declare_parameter('num_points', 100)  # Number of points in the path
-        self.declare_parameter('publish_frequency', 1.0)  # How often to publish the path (Hz)
+        self.declare_parameter('path_type', 'figure_eight')
+        self.declare_parameter('path_scale', 20.0)  # Уменьшил с 3.0 для более плавной восьмерки
+        self.declare_parameter('num_points', 500)  # Увеличил с 100 для более гладкой траектории
+        self.declare_parameter('publish_frequency', 2.0)
         
         # Get parameters
         self.path_type = self.get_parameter('path_type').value
@@ -39,30 +39,50 @@ class PathGenerator(Node):
         """Generate a path based on the specified type"""
         path = Path()
         path.header.stamp = self.get_clock().now().to_msg()
-        path.header.frame_id = 'world'  # Assumes world frame is used
+        path.header.frame_id = 'world'
         
         if self.path_type == 'figure_eight':
-            # Generate a figure-eight path
+            # Улучшенный генератор восьмерки с плавными переходами
+            # Используем больше точек и модифицированную формулу
             t = np.linspace(0, 2 * math.pi, self.num_points)
             scale_x = self.path_scale
             scale_y = self.path_scale / 2
             
+            # Вычисляем кривизну в каждой точке для адаптивного распределения
+            curvatures = []
             for i in range(len(t)):
+                # Первые и вторые производные
+                dx = scale_x * math.cos(t[i])
+                dy = scale_y * 2 * math.cos(2 * t[i])
+                ddx = -scale_x * math.sin(t[i])
+                ddy = -scale_y * 4 * math.sin(2 * t[i])
+                
+                # Формула кривизны
+                curvature = abs(dx * ddy - dy * ddx) / ((dx**2 + dy**2)**1.5 + 1e-10)
+                curvatures.append(curvature)
+            
+            # Добавляем больше точек в областях с высокой кривизной
+            max_curvature = max(curvatures)
+            min_spacing = 0.01  # Минимальное расстояние между точками
+            
+            last_pose = None
+            for i in range(len(t)):
+                # Создаем точку пути
                 pose = PoseStamped()
                 pose.header.stamp = self.get_clock().now().to_msg()
                 pose.header.frame_id = 'world'
                 
-                # Figure eight equation: x = scale_x * sin(t), y = scale_y * sin(t) * cos(t)
+                # Используем более плавную версию уравнения восьмерки
                 pose.pose.position.x = scale_x * math.sin(t[i])
                 pose.pose.position.y = scale_y * math.sin(2 * t[i])
                 pose.pose.position.z = 0.0
                 
-                # Calculate heading (tangent to the path)
+                # Вычисляем направление (тангенс к пути)
                 dx = scale_x * math.cos(t[i])
                 dy = scale_y * 2 * math.cos(2 * t[i])
                 heading = math.atan2(dy, dx)
                 
-                # Convert heading to quaternion (assuming planar motion)
+                # Преобразуем направление в кватернион
                 qz = math.sin(heading / 2.0)
                 qw = math.cos(heading / 2.0)
                 
@@ -71,7 +91,61 @@ class PathGenerator(Node):
                 pose.pose.orientation.z = qz
                 pose.pose.orientation.w = qw
                 
-                path.poses.append(pose)
+                # Добавляем эту точку в путь
+                # Проверяем, достаточно ли далеко от предыдущей
+                if last_pose is None:
+                    path.poses.append(pose)
+                    last_pose = pose
+                else:
+                    dx = pose.pose.position.x - last_pose.pose.position.x
+                    dy = pose.pose.position.y - last_pose.pose.position.y
+                    dist = math.sqrt(dx*dx + dy*dy)
+                    
+                    # Нормализованная кривизна (0-1)
+                    norm_curvature = curvatures[i] / max_curvature if max_curvature > 0 else 0
+                    # Адаптивное расстояние: меньше на поворотах, больше на прямых
+                    adaptive_spacing = min_spacing + (1.0 - norm_curvature) * 0.05
+                    
+                    if dist >= adaptive_spacing:
+                        path.poses.append(pose)
+                        last_pose = pose
+            
+            # Сглаживаем финальный путь с помощью скользящего среднего
+            if len(path.poses) > 5:
+                smoothed_poses = []
+                window_size = 5  # Размер окна сглаживания
+                
+                # Копируем первые (window_size//2) точек
+                for i in range(window_size//2):
+                    smoothed_poses.append(path.poses[i])
+                
+                # Сглаживаем средние точки
+                for i in range(window_size//2, len(path.poses) - window_size//2):
+                    smooth_pose = PoseStamped()
+                    smooth_pose.header = path.poses[i].header
+                    
+                    # Среднее положение
+                    x_sum = 0
+                    y_sum = 0
+                    for j in range(i - window_size//2, i + window_size//2 + 1):
+                        x_sum += path.poses[j].pose.position.x
+                        y_sum += path.poses[j].pose.position.y
+                    
+                    smooth_pose.pose.position.x = x_sum / window_size
+                    smooth_pose.pose.position.y = y_sum / window_size
+                    smooth_pose.pose.position.z = 0.0
+                    
+                    # Ориентация остается от исходной точки
+                    smooth_pose.pose.orientation = path.poses[i].pose.orientation
+                    
+                    smoothed_poses.append(smooth_pose)
+                
+                # Копируем последние (window_size//2) точек
+                for i in range(len(path.poses) - window_size//2, len(path.poses)):
+                    smoothed_poses.append(path.poses[i])
+                
+                # Заменяем путь сглаженным
+                path.poses = smoothed_poses
         
         elif self.path_type == 'circle':
             # Generate a circular path
