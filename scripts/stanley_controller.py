@@ -17,8 +17,8 @@ class StanleyController(Node):
         super().__init__('stanley_controller')
         
         # Parameters - MODIFIED VALUES
-        self.declare_parameter('k_gain', 1.5)  # Reduced from 10.5 for less aggressive control
-        self.declare_parameter('k_soft', 1.0)  # Increased from 1.0 for more smoothing
+        self.declare_parameter('k_gain', 0.5)  # Reduced from 10.5 for less aggressive control
+        self.declare_parameter('k_soft', 0.0)  # Increased from 1.0 for more smoothing
         self.declare_parameter('max_steering', 0.227799)  # Max steering angle (from URDF limits)
         self.declare_parameter('control_frequency', 60.0)  # Increased from 10.0 for smoother control
         self.declare_parameter('base_wheel_speed', 30.0)  # Reduced from 20.0 for less aggressive motion
@@ -193,7 +193,7 @@ class StanleyController(Node):
         
         # Calculate the signed perpendicular distance (cross-track error)
         # Using the cross product to get the signed distance
-        cross_track_error = dx * path_direction_y - dy * path_direction_x
+        cross_track_error = -(dx * path_direction_y - dy * path_direction_x)
         
         # Calculate heading error (difference between path heading and robot heading)
         heading_error = self.normalize_angle(path_heading - robot_heading)
@@ -221,8 +221,9 @@ class StanleyController(Node):
         
         # Calculate steering angle using Stanley controller formula
         # δ = ψ + arctan(k * e / v)
-        steering_angle = heading_error + math.atan2(-self.k_gain * cross_track_error, adjusted_velocity)
-        
+        steering_angle = -heading_error + math.atan2(-self.k_gain * cross_track_error, adjusted_velocity)
+        # steering_angle = math.atan2(-self.k_gain * cross_track_error, adjusted_velocity)
+        # steering_angle = heading_error
         # Limit steering angle to max_steering
         steering_angle = max(-self.max_steering, min(self.max_steering, steering_angle))
         
@@ -282,7 +283,7 @@ class StanleyController(Node):
         # Calculate errors
         cross_track_error, heading_error, path_heading, robot_x, robot_y = self.get_cross_track_error()
 
-        self.get_logger().info(f'Cross-track error: {cross_track_error:.3f}, rob_x: {robot_x}, rob_y: {robot_y}')  #####
+        self.get_logger().info(f'Cross-track error: {cross_track_error:.3f}, head: {heading_error}, rob_x: {robot_x}, rob_y: {robot_y}')  #####
         
         # Get steering command from Stanley controller
         raw_steering_angle = self.stanley_control(cross_track_error, heading_error)
