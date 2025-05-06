@@ -1,9 +1,0 @@
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/install/strip.dir
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/install/local.dir
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/install.dir
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/list_install_components.dir
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/rebuild_cache.dir
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/edit_cache.dir
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/test.dir
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/skate_uninstall.dir
-/home/danya/skate_ws/src/skate/build/skate/CMakeFiles/uninstall.dir

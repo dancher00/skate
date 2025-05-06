@@ -1,4 +1,0 @@
-Invoking command in '/home/danya/skate_ws/src/skate/build/skate': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/danya/skate_ws/src/skate/build/skate -- -j8 -l8
-Invoked command in '/home/danya/skate_ws/src/skate/build/skate' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /home/danya/skate_ws/src/skate/build/skate -- -j8 -l8
-Invoking command in '/home/danya/skate_ws/src/skate/build/skate': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/danya/skate_ws/src/skate/build/skate
-Invoked command in '/home/danya/skate_ws/src/skate/build/skate' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /home/danya/skate_ws/src/skate/build/skate
