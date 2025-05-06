@@ -1,0 +1,78 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 30
+    use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    trj0_controller:
+      type: position_controllers/JointGroupPositionController
+
+    trj1_controller:
+      type: position_controllers/JointGroupPositionController
+
+    wheel_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+trj0_controller:
+  ros__parameters:
+    joints:
+      - trj0
+    interface_name: position
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    gains:
+      trj0:
+        p: 20.0  # Увеличено для более быстрой реакции
+        i: 0.3   # Уменьшено для предотвращения перерегулирования
+        d: 2.0   # Уменьшено для сохранения плавности
+
+trj1_controller:
+  ros__parameters:
+    joints:
+      - trj1
+    interface_name: position
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    gains:
+      trj1:
+        p: 20.0  # Увеличено для более быстрой реакции
+        i: 0.3   # Уменьшено для предотвращения перерегулирования
+        d: 2.0   # Уменьшено для сохранения плавности
+
+wheel_controller:
+  ros__parameters:
+    joints:
+      - whj0
+      - whj1
+      - whj2
+      - whj3
+    interface_name: velocity
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - velocity
+    gains:
+      whj0:
+        p: 1.0
+        i: 0.1
+        d: 0.0
+      whj1:
+        p: 1.0
+        i: 0.1
+        d: 0.0
+      whj2:
+        p: 1.0
+        i: 0.1
+        d: 0.0
+      whj3:
+        p: 1.0
+        i: 0.1
+        d: 0.0

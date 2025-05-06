@@ -1,0 +1,159 @@
+[0.000000] (-) TimerEvent: {}
+[0.000761] (skate) JobQueued: {'identifier': 'skate', 'dependencies': OrderedDict()}
+[0.000850] (skate) JobStarted: {'identifier': 'skate'}
+[0.015559] (skate) JobProgress: {'identifier': 'skate', 'progress': 'cmake'}
+[0.017353] (skate) Command: {'cmd': ['/usr/bin/cmake', '/home/danya/skate_ws/src/skate', '-DCMAKE_INSTALL_PREFIX=/home/danya/skate_ws/src/skate/install/skate'], 'cwd': '/home/danya/skate_ws/src/skate/build/skate', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'danya'), ('LC_TIME', 'ru_RU.UTF-8'), ('SSH_AGENT_PID', '1234'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/danya'), ('OLDPWD', '/home/danya/skate_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ru_RU.UTF-8'), ('MANAGERPID', '1046'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3574'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/danya/skate_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'danya'), ('JOURNAL_STREAM', '8:43339'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'danya'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/danya/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/danya:@/tmp/.ICE-unix/1298,unix/danya:/tmp/.ICE-unix/1298'), ('INVOCATION_ID', 'ae349051d8bb47e986ec6842539e20c9'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ru_RU.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'ru_RU.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/danya/skate_ws/install/skate:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ru_RU.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:e2408b6c-b2c5-4875-acf9-33a735aa7914'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'ru_RU.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'ru_RU.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/danya/skate_ws/src/skate/build/skate'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'ru_RU.UTF-8'), ('LC_PAPER', 'ru_RU.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/danya/skate_ws/install/skate:/opt/ros/foxy')]), 'shell': False}
+[0.099677] (-) TimerEvent: {}
+[0.200315] (-) TimerEvent: {}
+[0.238269] (skate) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.300443] (-) TimerEvent: {}
+[0.400848] (-) TimerEvent: {}
+[0.401459] (skate) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.409633] (skate) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[0.501003] (-) TimerEvent: {}
+[0.544813] (skate) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[0.548511] (skate) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.601124] (-) TimerEvent: {}
+[0.681532] (skate) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.699906] (skate) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.700469] (skate) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.701186] (-) TimerEvent: {}
+[0.703558] (skate) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[0.801304] (-) TimerEvent: {}
+[0.854629] (skate) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[0.855837] (skate) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.901469] (-) TimerEvent: {}
+[1.001289] (skate) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.001701] (-) TimerEvent: {}
+[1.019325] (skate) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.019828] (skate) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.039873] (skate) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.12 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[1.082783] (skate) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[1.083140] (skate) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[1.101822] (-) TimerEvent: {}
+[1.202178] (-) TimerEvent: {}
+[1.302575] (-) TimerEvent: {}
+[1.402987] (-) TimerEvent: {}
+[1.408116] (skate) StdoutLine: {'line': b'-- Found rclpy: 1.0.13 (/opt/ros/foxy/share/rclpy/cmake)\n'}
+[1.411115] (skate) StdoutLine: {'line': b'-- Found nav_msgs: 2.0.5 (/opt/ros/foxy/share/nav_msgs/cmake)\n'}
+[1.461209] (skate) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.471717] (skate) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[1.503153] (-) TimerEvent: {}
+[1.603656] (-) TimerEvent: {}
+[1.704043] (skate) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[1.704319] (-) TimerEvent: {}
+[1.757151] (skate) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[1.804452] (-) TimerEvent: {}
+[1.867945] (skate) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.904575] (-) TimerEvent: {}
+[2.004943] (-) TimerEvent: {}
+[2.060213] (skate) StdoutLine: {'line': b'-- Found tf2_ros: 0.13.14 (/opt/ros/foxy/share/tf2_ros/cmake)\n'}
+[2.105063] (-) TimerEvent: {}
+[2.134079] (skate) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.4 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[2.136059] (skate) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[2.137855] (skate) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[2.205174] (-) TimerEvent: {}
+[2.271052] (skate) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[2.271802] (skate) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[2.305352] (-) TimerEvent: {}
+[2.405759] (-) TimerEvent: {}
+[2.419345] (skate) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[2.419714] (skate) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[2.505870] (-) TimerEvent: {}
+[2.546678] (skate) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[2.547139] (skate) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[2.605987] (-) TimerEvent: {}
+[2.683571] (skate) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[2.684979] (skate) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[2.706107] (-) TimerEvent: {}
+[2.806515] (-) TimerEvent: {}
+[2.906888] (-) TimerEvent: {}
+[3.007282] (-) TimerEvent: {}
+[3.107646] (-) TimerEvent: {}
+[3.208037] (-) TimerEvent: {}
+[3.261812] (skate) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.8 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[3.308431] (-) TimerEvent: {}
+[3.357583] (skate) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[3.377335] (skate) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[3.377598] (skate) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[3.377703] (skate) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[3.395263] (skate) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[3.395486] (skate) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[3.398436] (skate) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[3.403600] (skate) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[3.406428] (skate) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the style conventions in PEP 257\n"}
+[3.408492] (-) TimerEvent: {}
+[3.423889] (skate) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[3.424212] (skate) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[3.426693] (skate) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[3.431987] (skate) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.434942] (skate) StdoutLine: {'line': b'-- Generating done\n'}
+[3.438141] (skate) StdoutLine: {'line': b'-- Build files have been written to: /home/danya/skate_ws/src/skate/build/skate\n'}
+[3.449847] (skate) CommandEnded: {'returncode': 0}
+[3.451452] (skate) JobProgress: {'identifier': 'skate', 'progress': 'build'}
+[3.453449] (skate) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/danya/skate_ws/src/skate/build/skate', '--', '-j8', '-l8'], 'cwd': '/home/danya/skate_ws/src/skate/build/skate', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'danya'), ('LC_TIME', 'ru_RU.UTF-8'), ('SSH_AGENT_PID', '1234'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/danya'), ('OLDPWD', '/home/danya/skate_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ru_RU.UTF-8'), ('MANAGERPID', '1046'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3574'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/danya/skate_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'danya'), ('JOURNAL_STREAM', '8:43339'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'danya'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/danya/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/danya:@/tmp/.ICE-unix/1298,unix/danya:/tmp/.ICE-unix/1298'), ('INVOCATION_ID', 'ae349051d8bb47e986ec6842539e20c9'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ru_RU.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'ru_RU.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/danya/skate_ws/install/skate:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ru_RU.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:e2408b6c-b2c5-4875-acf9-33a735aa7914'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'ru_RU.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'ru_RU.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/danya/skate_ws/src/skate/build/skate'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'ru_RU.UTF-8'), ('LC_PAPER', 'ru_RU.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/danya/skate_ws/install/skate:/opt/ros/foxy')]), 'shell': False}
+[3.508645] (-) TimerEvent: {}
+[3.535350] (skate) CommandEnded: {'returncode': 0}
+[3.537013] (skate) JobProgress: {'identifier': 'skate', 'progress': 'install'}
+[3.557388] (skate) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/danya/skate_ws/src/skate/build/skate'], 'cwd': '/home/danya/skate_ws/src/skate/build/skate', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'danya'), ('LC_TIME', 'ru_RU.UTF-8'), ('SSH_AGENT_PID', '1234'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/danya'), ('OLDPWD', '/home/danya/skate_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'ru_RU.UTF-8'), ('MANAGERPID', '1046'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3574'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/home/danya/skate_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'danya'), ('JOURNAL_STREAM', '8:43339'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'danya'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/danya/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/danya:@/tmp/.ICE-unix/1298,unix/danya:/tmp/.ICE-unix/1298'), ('INVOCATION_ID', 'ae349051d8bb47e986ec6842539e20c9'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'ru_RU.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'ru_RU.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/danya/skate_ws/install/skate:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'ru_RU.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:e2408b6c-b2c5-4875-acf9-33a735aa7914'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'ru_RU.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'ru_RU.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/danya/skate_ws/src/skate/build/skate'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'ru_RU.UTF-8'), ('LC_PAPER', 'ru_RU.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/home/danya/skate_ws/install/skate:/opt/ros/foxy')]), 'shell': False}
+[3.579501] (skate) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.579891] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/lib/skate/stanley_controller.py\n'}
+[3.580137] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/lib/skate/path_generator.py\n'}
+[3.580351] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/lib/skate/odom_to_path.py\n'}
+[3.580517] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/config\n'}
+[3.580673] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/config/controller_config.yaml\n'}
+[3.589637] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/config/empty.yaml\n'}
+[3.590229] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/config/view_skate_world_frame.rviz\n'}
+[3.590495] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/config/view_skate.rviz\n'}
+[3.590754] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description\n'}
+[3.591066] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board\n'}
+[3.591299] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/meshes\n'}
+[3.591602] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/meshes/tr0.STL\n'}
+[3.599083] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/meshes/wh0.STL\n'}
+[3.600853] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/meshes/tr1.STL\n'}
+[3.604625] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/meshes/wh3.STL\n'}
+[3.606144] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/meshes/wh2.STL\n'}
+[3.607483] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/meshes/wh1.STL\n'}
+[3.608708] (-) TimerEvent: {}
+[3.608987] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/meshes/base_link.STL\n'}
+[3.612922] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/launch\n'}
+[3.613299] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/launch/display.launch\n'}
+[3.613520] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/launch/gazebo.launch\n'}
+[3.613735] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/config\n'}
+[3.613968] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/config/joint_names_skate.yaml\n'}
+[3.614218] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/CMakeLists.txt\n'}
+[3.614409] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/export.log\n'}
+[3.619520] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/package.xml\n'}
+[3.619888] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/urdf\n'}
+[3.620073] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/urdf/ros2_control.xacro\n'}
+[3.620286] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/urdf/robot_core.xacro\n'}
+[3.620862] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/urdf/board.urdf.xacro\n'}
+[3.621101] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/urdf/board.csv\n'}
+[3.621345] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/board/urdf/gazebo_control.xacro\n'}
+[3.621573] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/description/robot.urdf.xacro\n'}
+[3.621853] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/launch\n'}
+[3.622134] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/launch/launch_sim.launch.py\n'}
+[3.622450] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/launch/skate_stanley_control.launch.py\n'}
+[3.622722] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/launch/rsp.launch.py\n'}
+[3.622895] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/launch/stanley_controller.launch.py\n'}
+[3.623117] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/launch/skate_stanley_control_world_frame.launch.py\n'}
+[3.623320] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/worlds\n'}
+[3.623587] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/worlds/empty.world\n'}
+[3.623821] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/ament_index/resource_index/package_run_dependencies/skate\n'}
+[3.624066] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/ament_index/resource_index/parent_prefix_path/skate\n'}
+[3.624281] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/environment/ament_prefix_path.sh\n'}
+[3.624503] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/environment/ament_prefix_path.dsv\n'}
+[3.624712] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/environment/path.sh\n'}
+[3.624974] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/environment/path.dsv\n'}
+[3.625200] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/local_setup.bash\n'}
+[3.625425] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/local_setup.sh\n'}
+[3.625663] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/local_setup.zsh\n'}
+[3.625882] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/local_setup.dsv\n'}
+[3.626052] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/package.dsv\n'}
+[3.626264] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/ament_index/resource_index/packages/skate\n'}
+[3.626467] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/cmake/skateConfig.cmake\n'}
+[3.626621] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/cmake/skateConfig-version.cmake\n'}
+[3.626789] (skate) StdoutLine: {'line': b'-- Installing: /home/danya/skate_ws/src/skate/install/skate/share/skate/package.xml\n'}
+[3.628466] (skate) CommandEnded: {'returncode': 0}
+[3.648849] (skate) JobEnded: {'identifier': 'skate', 'rc': 0}
+[3.649764] (-) EventReactorShutdown: {}

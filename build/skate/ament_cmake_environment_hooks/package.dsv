@@ -1,0 +1,4 @@
+source;share/skate/local_setup.bash
+source;share/skate/local_setup.dsv
+source;share/skate/local_setup.sh
+source;share/skate/local_setup.zsh

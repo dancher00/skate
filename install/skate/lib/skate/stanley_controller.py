@@ -20,6 +20,7 @@ class StanleyController(Node):
         self.declare_parameter('k_gain', 1.5)  # Reduced from 10.5 for less aggressive control
         self.declare_parameter('k_soft', 1.0)  # Increased from 1.0 for more smoothing
         self.declare_parameter('max_steering', 0.227799)  # Max steering angle (from URDF limits)
+        self.declare_parameter('wheelbase', 0.5)  # Wheelbase (distance between front and rear axles)
         self.declare_parameter('control_frequency', 60.0)  # Increased from 10.0 for smoother control
         self.declare_parameter('base_wheel_speed', 30.0)  # Reduced from 20.0 for less aggressive motion
         
@@ -27,6 +28,7 @@ class StanleyController(Node):
         self.k_gain = self.get_parameter('k_gain').value
         self.k_soft = self.get_parameter('k_soft').value
         self.max_steering = self.get_parameter('max_steering').value
+        self.wheelbase = self.get_parameter('wheelbase').value
         self.base_wheel_speed = self.get_parameter('base_wheel_speed').value
         
         # Path tracking variables
