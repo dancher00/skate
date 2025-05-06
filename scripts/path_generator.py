@@ -13,7 +13,7 @@ class PathGenerator(Node):
         
         # Parameters
         self.declare_parameter('path_type', 'figure_eight')
-        self.declare_parameter('path_scale', 20.0)  # Уменьшил с 3.0 для более плавной восьмерки
+        self.declare_parameter('path_scale', 2.0)  # Уменьшил с 3.0 для более плавной восьмерки
         self.declare_parameter('num_points', 500)  # Увеличил с 100 для более гладкой траектории
         self.declare_parameter('publish_frequency', 2.0)
         

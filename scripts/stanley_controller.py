@@ -17,8 +17,8 @@ class StanleyController(Node):
         super().__init__('stanley_controller')
         
         # Parameters - MODIFIED VALUES
-        self.declare_parameter('k_gain', 10.5)  # Reduced from 10.5 for less aggressive control
-        self.declare_parameter('k_soft', 2.0)  # Increased from 1.0 for more smoothing
+        self.declare_parameter('k_gain', 1.5)  # Reduced from 10.5 for less aggressive control
+        self.declare_parameter('k_soft', 1.0)  # Increased from 1.0 for more smoothing
         self.declare_parameter('max_steering', 0.227799)  # Max steering angle (from URDF limits)
         self.declare_parameter('wheelbase', 0.5)  # Wheelbase (distance between front and rear axles)
         self.declare_parameter('control_frequency', 60.0)  # Increased from 10.0 for smoother control
@@ -131,6 +131,8 @@ class StanleyController(Node):
         self.current_waypoint_idx = 0
         self.get_logger().info(f'Received new path with {len(self.path.poses)} waypoints')
     
+
+
     def get_cross_track_error(self):
         """Calculate the cross-track error (lateral error from path)"""
         if not self.path or not self.current_pose:
@@ -154,7 +156,7 @@ class StanleyController(Node):
                 nearest_idx = i
             elif dist > min_dist * 2:  # If distance starts increasing significantly
                 break
-        
+            
         self.current_waypoint_idx = nearest_idx
         
         # Get the nearest waypoint
@@ -187,17 +189,23 @@ class StanleyController(Node):
         dx = nearest_waypoint.position.x - robot_x
         dy = nearest_waypoint.position.y - robot_y
         
-        # Project this vector onto the normal of the path direction to get the cross-track error
-        # The sign of the cross-track error matters (positive = right of path, negative = left of path)
-        # We use the sign of the cross product to determine which side of the path the robot is on
-        cross_track_error = math.sin(path_heading - robot_heading) * math.sqrt(dx*dx + dy*dy)
+        # Get the direction vector of the path
+        path_direction_x = math.cos(path_heading)
+        path_direction_y = math.sin(path_heading)
+        
+        # Calculate the signed perpendicular distance (cross-track error)
+        # Using the cross product to get the signed distance
+        cross_track_error = dx * path_direction_y - dy * path_direction_x
         
         # Calculate heading error (difference between path heading and robot heading)
         heading_error = self.normalize_angle(path_heading - robot_heading)
         
         self.get_logger().debug(f'Cross-track error: {cross_track_error}, Heading error: {heading_error}')
         
-        return cross_track_error, heading_error, path_heading
+        return cross_track_error, heading_error, path_heading, robot_x, robot_y
+
+
+
     
     def normalize_angle(self, angle):
         """Normalize angle to [-pi, pi]"""
@@ -274,7 +282,9 @@ class StanleyController(Node):
             return
         
         # Calculate errors
-        cross_track_error, heading_error, path_heading = self.get_cross_track_error()
+        cross_track_error, heading_error, path_heading, robot_x, robot_y = self.get_cross_track_error()
+
+        self.get_logger().info(f'Cross-track error: {cross_track_error:.3f}, rob_x: {robot_x}, rob_y: {robot_y}')  #####
         
         # Get steering command from Stanley controller
         raw_steering_angle = self.stanley_control(cross_track_error, heading_error)
