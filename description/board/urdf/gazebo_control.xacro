@@ -24,7 +24,7 @@
     
     <!-- P3D position tracking plugin -->
     <plugin name="skate_pos" filename="libgazebo_ros_p3d.so">
-      <body_name>base_link</body_name>
+      <body_name>base_footprint</body_name>
       <frame_name>world</frame_name>
       <update_rate>20.0</update_rate>
       <xyz_offset>0 0 0</xyz_offset>

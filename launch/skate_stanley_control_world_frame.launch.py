@@ -143,6 +143,26 @@ def generate_launch_description():
             'path_length': 1000  # Number of poses to keep in the path
         }]
     )
+
+
+        # Add this to your launch file
+    robot_localization_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[{
+            'frequency': 30.0,
+            'sensor_timeout': 0.1,
+            'two_d_mode': True,
+            'publish_tf': True,
+            'odom_frame': 'odom',
+            'base_link_frame': 'base_footprint',
+            'world_frame': 'world',
+            'odom0': '/odom',
+            'odom0_config': [True, True, False, False, False, False, False, False, False, False, False, True, False, False, False]
+        }]
+    )
     
     # RViz with updated configuration
     rviz_config = os.path.join(pkg_skate, 'config', 'view_skate_world_frame.rviz')
@@ -178,7 +198,7 @@ def generate_launch_description():
     
     stanley_timer = TimerAction(
         period=15.0,  # Wait for 15 seconds
-        actions=[path_generator_node, stanley_controller_node, odom_to_path_node]
+        actions=[path_generator_node, stanley_controller_node, odom_to_path_node, robot_localization_node]
     )
     
     return LaunchDescription([
