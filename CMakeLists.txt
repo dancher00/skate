@@ -29,6 +29,7 @@ install(
     scripts/stanley_controller.py
     scripts/path_generator.py
     scripts/odom_to_path.py
+    scripts/odom_tf_broadcaster.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -173,6 +173,14 @@ def generate_launch_description():
             'odom0_config': [True, True, False, False, False, False, False, False, False, False, False, True, False, False, False]
         }]
     )
+
+
+    odom_tf_broadcaster_node = Node(
+        package='skate',
+        executable='odom_tf_broadcaster.py',
+        name='odom_tf_broadcaster',
+        output='screen'
+    )
     
     # RViz with updated configuration
     rviz_config = os.path.join(pkg_skate, 'config', 'view_skate_world_frame.rviz')
@@ -219,8 +227,8 @@ def generate_launch_description():
         # Start transformation publishers right away
         robot_state_publisher,
         static_transform_world_to_map,
-        map_to_base_transform,  # Moved here from stanley_timer
-        
+        # map_to_base_transform,  # Moved here from stanley_timer
+        odom_tf_broadcaster_node,
         # Start Gazebo
         gazebo,
         
