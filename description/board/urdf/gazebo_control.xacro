@@ -16,10 +16,10 @@
       <update_rate>20</update_rate>
       <joint_name>trj0</joint_name>
       <joint_name>trj1</joint_name>
-      <!-- <joint_name>whj0</joint_name>
+      <joint_name>whj0</joint_name>
       <joint_name>whj1</joint_name>
       <joint_name>whj2</joint_name>
-      <joint_name>whj3</joint_name> -->
+      <joint_name>whj3</joint_name>
     </plugin>
     
     <!-- P3D position tracking plugin -->
@@ -33,6 +33,14 @@
       <topic>odom</topic>
     </plugin>
   </gazebo>
+
+
+
+
+
+
+
+
 
   <!-- Add friction to the wheels for more realistic physics -->
   <gazebo reference="wh0">

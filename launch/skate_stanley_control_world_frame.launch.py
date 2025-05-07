@@ -46,6 +46,24 @@ def generate_launch_description():
         parameters=[{'robot_description': robot_description_raw, 'use_sim_time': use_sim_time}]
     )
     
+    # Static transform publishers for coordinate frames
+    static_transform_world_to_map = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'world', 'map'],
+        name='static_tf_world_to_map',
+        output='screen'
+    )
+    
+    # Add this transform to connect base_footprint to map
+    map_to_base_transform = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        arguments=['0', '0', '0', '0', '0', '0', 'map', 'base_footprint'],
+        name='static_tf_map_to_base_footprint',
+        output='screen'
+    )
+    
     # Launch Gazebo simulation
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
@@ -102,14 +120,6 @@ def generate_launch_description():
         output='screen'
     )
     
-    # Static transform publisher for world to map if needed
-    static_transform_world_to_map = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        arguments=['0', '0', '0', '0', '0', '0', 'world', 'map'],
-        output='screen'
-    )
-    
     # App nodes
     path_generator_node = Node(
         package='skate',
@@ -144,8 +154,7 @@ def generate_launch_description():
         }]
     )
 
-
-        # Add this to your launch file
+    # Robot localization node
     robot_localization_node = Node(
         package='robot_localization',
         executable='ekf_node',
@@ -155,7 +164,8 @@ def generate_launch_description():
             'frequency': 30.0,
             'sensor_timeout': 0.1,
             'two_d_mode': True,
-            'publish_tf': True,
+            'publish_tf': False,  # Changed to avoid conflicts with static transform
+            'map_frame': 'map',
             'odom_frame': 'odom',
             'base_link_frame': 'base_footprint',
             'world_frame': 'world',
@@ -209,6 +219,7 @@ def generate_launch_description():
         # Start transformation publishers right away
         robot_state_publisher,
         static_transform_world_to_map,
+        map_to_base_transform,  # Moved here from stanley_timer
         
         # Start Gazebo
         gazebo,
