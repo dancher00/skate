@@ -4,6 +4,10 @@
   <xacro:include filename="$(find skate)/description/board/urdf/gazebo_control.xacro" />
   <xacro:include filename="$(find skate)/description/board/urdf/ros2_control.xacro" />
 
+
+  <xacro:include filename="$(find skate)/description/board/urdf/lidar.xacro" />
+
+
   <!-- Include the ros2_control configuration -->
   <xacro:skate_ros2_control name="skate_control"/>
 </robot>

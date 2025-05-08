@@ -29,7 +29,7 @@ def generate_launch_description():
     
     declare_path_type = DeclareLaunchArgument(
         'path_type',
-        default_value='circle',
+        default_value='figure_eight',
         description='Type of path to generate (figure_eight, circle, straight)'
     )
     
