@@ -1,0 +1,342 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="obstacle_world">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    
+    <!-- World boundaries (20m x 20m) -->
+    <!-- North Wall -->
+    <model name="north_wall">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.2 1</ambient>
+            <diffuse>0.2 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+        <pose>0 10 1 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- South Wall -->
+    <model name="south_wall">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>20 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>20 0.2 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.2 1</ambient>
+            <diffuse>0.2 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+        <pose>0 -10 1 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- East Wall -->
+    <model name="east_wall">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 20 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 20 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.2 1</ambient>
+            <diffuse>0.2 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+        <pose>10 0 1 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- West Wall -->
+    <model name="west_wall">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 20 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 20 2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.2 1</ambient>
+            <diffuse>0.2 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+        <pose>-10 0 1 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- Box obstacle 1 -->
+    <model name="box1">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.5 1.5 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.5 1.5 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1.0 0.2 0.2 1</ambient>
+            <diffuse>1.0 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+        <pose>5 5 0.5 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- Box obstacle 2 -->
+    <model name="box2">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>2.0 1.0 1.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>2.0 1.0 1.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.2 1.0 0.2 1</ambient>
+            <diffuse>0.2 1.0 0.2 1</diffuse>
+          </material>
+        </visual>
+        <pose>-3 4 0.6 0 0 0.5</pose>
+      </link>
+    </model>
+    
+    <!-- Cylinder obstacle 1 -->
+    <model name="cylinder1">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.7</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.7</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 1.0 1</ambient>
+            <diffuse>0.2 0.2 1.0 1</diffuse>
+          </material>
+        </visual>
+        <pose>-6 -5 0.75 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- Cylinder obstacle 2 -->
+    <model name="cylinder2">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.9</radius>
+              <length>1.2</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.9</radius>
+              <length>1.2</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1.0 1.0 0.2 1</ambient>
+            <diffuse>1.0 1.0 0.2 1</diffuse>
+          </material>
+        </visual>
+        <pose>2 -7 0.6 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- Sphere obstacle -->
+    <model name="sphere1">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <sphere>
+              <radius>0.8</radius>
+            </sphere>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.8</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>1.0 0.5 0.0 1</ambient>
+            <diffuse>1.0 0.5 0.0 1</diffuse>
+          </material>
+        </visual>
+        <pose>-4 -1 0.8 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- Complex obstacle (L-shape) -->
+    <model name="complex_obstacle">
+      <static>true</static>
+      <!-- Horizontal part -->
+      <link name="h_link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>3.0 1.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>3.0 1.0 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.4 0.8 1</ambient>
+            <diffuse>0.8 0.4 0.8 1</diffuse>
+          </material>
+        </visual>
+        <pose>6 -2 0.5 0 0 0</pose>
+      </link>
+      <!-- Vertical part -->
+      <link name="v_link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.0 2.5 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.0 2.5 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.4 0.8 1</ambient>
+            <diffuse>0.8 0.4 0.8 1</diffuse>
+          </material>
+        </visual>
+        <pose>5 -3.25 0.5 0 0 0</pose>
+      </link>
+    </model>
+    
+    <!-- Physics settings -->
+    <physics type="ode">
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>50</iters>
+          <precon_iters>0</precon_iters>
+          <sor>1.4</sor>
+        </solver>
+        <constraints>
+          <cfm>0.0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>10.0</contact_max_correcting_vel>
+          <contact_surface_layer>0.01</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+    
+    <!-- The origin marker for visual reference -->
+    <model name="origin_marker">
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <sphere>
+              <radius>0.2</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1</diffuse>
+          </material>
+        </visual>
+        <pose>0 0 0.1 0 0 0</pose>
+      </link>
+    </model>
+  </world>
+</sdf>

@@ -55,26 +55,28 @@ def generate_launch_description():
         output='screen'
     )
     
-    # Add this transform to connect base_footprint to map
-    map_to_base_transform = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        arguments=['0', '0', '0', '0', '0', '0', 'map', 'base_footprint'],
-        name='static_tf_map_to_base_footprint',
-        output='screen'
-    )
-    
-    # Launch Gazebo simulation
+    # Launch Gazebo simulation with custom world
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
+        launch_arguments={
+            'world': os.path.join(pkg_skate, 'worlds', 'obstacle_world.world'),
+            'verbose': 'true'
+        }.items()
     )
     
-    # Spawn entity in Gazebo
+    # Spawn entity in Gazebo at a specific corner position (-8, -8)
     spawn_entity = Node(
         package='gazebo_ros', 
         executable='spawn_entity.py',
-        arguments=['-topic', 'robot_description', '-entity', 'board'],
+        arguments=[
+            '-topic', 'robot_description', 
+            '-entity', 'board',
+            '-x', '-8.0',
+            '-y', '-8.0',
+            '-z', '0.1',
+            '-Y', '0.0'  # Yaw orientation
+        ],
         output='screen'
     )
     
@@ -128,7 +130,9 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'use_sim_time': use_sim_time,
-            'path_type': path_type
+            'path_type': path_type,
+            'path_scale': 6.0,  # Increased scale for the larger world
+            'num_points': 500   # More points for smoother paths
         }]
     )
     
@@ -138,7 +142,13 @@ def generate_launch_description():
         name='stanley_controller',
         output='screen',
         parameters=[{
-            'use_sim_time': use_sim_time
+            'use_sim_time': use_sim_time,
+            'k_gain': 1.0,        # Adjusted for better tracking
+            'k_soft': 0.5,        # Smoothing factor
+            'max_steering': 0.227799,
+            'wheelbase': 0.5,
+            'control_frequency': 60.0,
+            'base_wheel_speed': 25.0  # Adjusted for the obstacle course
         }]
     )
     
@@ -150,7 +160,8 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'use_sim_time': use_sim_time,
-            'path_length': 1000  # Number of poses to keep in the path
+            'path_length': 2000,  # Increased to track longer paths
+            'min_distance': 0.02  # Smaller distance between points for better visualization
         }]
     )
 
@@ -164,7 +175,7 @@ def generate_launch_description():
             'frequency': 30.0,
             'sensor_timeout': 0.1,
             'two_d_mode': True,
-            'publish_tf': False,  # Changed to avoid conflicts with static transform
+            'publish_tf': False,
             'map_frame': 'map',
             'odom_frame': 'odom',
             'base_link_frame': 'base_footprint',
@@ -174,7 +185,7 @@ def generate_launch_description():
         }]
     )
 
-
+    # TF broadcaster for odometry
     odom_tf_broadcaster_node = Node(
         package='skate',
         executable='odom_tf_broadcaster.py',
@@ -227,9 +238,9 @@ def generate_launch_description():
         # Start transformation publishers right away
         robot_state_publisher,
         static_transform_world_to_map,
-        # map_to_base_transform,  # Moved here from stanley_timer
         odom_tf_broadcaster_node,
-        # Start Gazebo
+        
+        # Start Gazebo with custom world
         gazebo,
         
         # Sequence other components with timers
