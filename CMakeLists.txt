@@ -30,12 +30,14 @@ install(
     scripts/path_generator.py
     scripts/odom_to_path.py
     scripts/odom_tf_broadcaster.py
+    scripts/path_planning.py
+
   DESTINATION lib/${PROJECT_NAME}
 )
 
 # Install directories
 install(
-  DIRECTORY config description launch worlds
+  DIRECTORY config description launch worlds maps
   DESTINATION share/${PROJECT_NAME}
 )
 

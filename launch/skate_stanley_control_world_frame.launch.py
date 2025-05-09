@@ -123,19 +123,37 @@ def generate_launch_description():
     )
     
     # App nodes
-    path_generator_node = Node(
+    # path_generator_node = Node(
+    #     package='skate',
+    #     executable='path_generator.py',
+    #     name='path_generator',
+    #     output='screen',
+    #     parameters=[{
+    #         'use_sim_time': use_sim_time,
+    #         'path_type': path_type,
+    #         'path_scale': 6.0,  # Increased scale for the larger world
+    #         'num_points': 500   # More points for smoother paths
+    #     }]
+    # )
+    
+
+    path_planning_node = Node(
         package='skate',
-        executable='path_generator.py',
-        name='path_generator',
+        executable='path_planning.py',
+        name='path_planning',
         output='screen',
         parameters=[{
             'use_sim_time': use_sim_time,
-            'path_type': path_type,
-            'path_scale': 6.0,  # Increased scale for the larger world
-            'num_points': 500   # More points for smoother paths
+            'map_yaml_file': os.path.join(pkg_skate, 'maps', 'obstacle_world.yaml'),
+            'start_x': -8.0,
+            'start_y': -8.0,
+            'goal_x': 8.0,
+            'goal_y': 8.0
         }]
     )
-    
+
+
+
     stanley_controller_node = Node(
         package='skate',
         executable='stanley_controller.py',
@@ -227,7 +245,7 @@ def generate_launch_description():
     
     stanley_timer = TimerAction(
         period=15.0,  # Wait for 15 seconds
-        actions=[path_generator_node, stanley_controller_node, odom_to_path_node, robot_localization_node]
+        actions=[path_planning_node, stanley_controller_node, odom_to_path_node, robot_localization_node]
     )
     
     return LaunchDescription([
